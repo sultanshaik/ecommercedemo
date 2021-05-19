@@ -11,14 +11,23 @@ const getStar= (value) =>{
     return '';
 }
 
+
+const getStarRatings = (value) =>{
+    const stars= [];
+    const ratings = (value)=><span>
+                    <i className={`gold ${getStar(value)}`}>
+                    </i>
+                </span>;
+    while(value-->0){
+        stars.push(ratings(value));
+    }
+   return stars; 
+}
+
 function Rating({value, numReviews}) {
     return (
         <div className="rating">
-            <span>
-                <i className={`gold ${getStar(value)}`}>
-                </i>
-            </span>
-            
+            {getStarRatings(value)}
         </div>
     )
 }
