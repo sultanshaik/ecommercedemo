@@ -1,18 +1,22 @@
 import {Container} from 'react-bootstrap';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+
 
 import {Header, Footer} from './components'
-import {HomePage} from './pages'
+import {HomePage, ProductPage} from './pages'
 function App() {
   return (
-    <div>
+    <Router>
       <Header />
       <main className="py-3">
         <Container>
-          <HomePage />
+          <Route path='/' component= {HomePage} exact/>
+          <Route path='/product/:id' component= {ProductPage} exact/>
         </Container>
       </main>
       <Footer />
-    </div>
+    </Router>
   );
 }
 
