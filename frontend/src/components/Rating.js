@@ -11,15 +11,25 @@ const getStar= (value) =>{
     return '';
 }
 
-
-const getStarRatings = (value) =>{
-    const stars= [];
-    const ratings = (value)=><span>
+const ratings = (value)=><span>
                     <i className={`gold ${getStar(value)}`}>
                     </i>
                 </span>;
-    while(value-->0){
-        stars.push(ratings(value));
+const ratingsEmpty = ()=><span>
+    <i className={'gold far fa-star'}>
+    </i>
+</span>;
+
+const getStarRatings = (value) =>{
+    const stars= [];
+    
+
+    let emptystars = 5 - Math.ceil(value);
+    while(value>0){
+        stars.push(ratings(value--));
+    }
+    while(emptystars-->0){
+        stars.push(ratingsEmpty());
     }
    return stars; 
 }
@@ -28,6 +38,7 @@ function Rating({value, numReviews}) {
     return (
         <div className="rating">
             {getStarRatings(value)}
+            <span>{`${numReviews} reviews`}</span>
         </div>
     )
 }
